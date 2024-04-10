@@ -28,7 +28,7 @@ namespace TopStyleDb.Models.Entities
             "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.")]
         public string Password { get; set; }
 
-        // List of orders from specific CustomerId
+        
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

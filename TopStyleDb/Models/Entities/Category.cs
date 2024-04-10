@@ -18,7 +18,6 @@ namespace TopStyleDb.Models.Entities
 
         public ICollection<Category> ChildCategories { get; set;} = new List<Category>();
 
-        // List of products from specific CategoryId
         public ICollection<Product> Products { get; set;} = new List<Product>();
 
 
