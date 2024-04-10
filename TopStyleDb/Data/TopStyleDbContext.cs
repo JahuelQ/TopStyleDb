@@ -25,7 +25,7 @@ namespace TopStyleDb.Data
                 .HasMany(c => c.ChildCategories)
                 .WithOne(c => c.ParentCategory)
                 .HasForeignKey(c => c.ParentCategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Category>()
                 .HasMany(c => c.Products)
@@ -42,13 +42,13 @@ namespace TopStyleDb.Data
                 .HasMany(o => o.OrderDetails)
                 .WithOne(od => od.Order)
                 .HasForeignKey(od => od.OrderId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OrderDetail>()
                 .HasOne(od => od.Product)
                 .WithMany(p => p.OrderDetails)
                 .HasForeignKey(od => od.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
         }
     }
