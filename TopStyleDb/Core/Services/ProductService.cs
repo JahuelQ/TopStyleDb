@@ -40,9 +40,9 @@ namespace TopStyleDb.Core.Services
             };
         }
 
-        public Task<Product> DeleteProduct(int id)
+        public async Task DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            await _repo.DeleteProduct(id);
         }
 
         public async Task<List<ProductDTO>> GetAllProducts()
@@ -63,11 +63,6 @@ namespace TopStyleDb.Core.Services
             }).ToList();
         }
 
-        public Task<List<Product>> GetProductByCategory(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ProductDTO> GetProductById(int id)
         {
             var product = await _repo.GetProductById(id);
@@ -86,24 +81,34 @@ namespace TopStyleDb.Core.Services
             };
         }
 
-        public Task<List<ProductDTO>> GetProductByName(string name)
+        public async Task<List<ProductDTO>> GetProductByName(string name)
         {
-            throw new NotImplementedException();
+            var products = await _repo.GetProductByName(name);
+            if (products == null)
+            {
+                return null;
+            }
+
+            return products.Select(p => new ProductDTO
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                Description = p.Description,
+                Price = p.Price,
+                CategoryId = p.CategoryId
+            }).ToList();
         }
 
         public async Task<bool> UpdateProduct(ProductDTO productDto)
         {
-            var productToUpdate = await _repo.GetProductById(productDto.ProductId);
-
-            if (productToUpdate == null)
+            var productToUpdate = new Product
             {
-                return false;
-            }
-
-            productToUpdate.ProductName = productDto.ProductName;
-            productToUpdate.Description = productDto.Description;
-            productToUpdate.Price = productDto.Price;
-            productToUpdate.CategoryId = productDto.CategoryId;
+                ProductId = productDto.ProductId,
+                ProductName = productDto.ProductName,
+                Description = productDto.Description,
+                Price = productDto.Price,
+                CategoryId = productDto.CategoryId
+            };
 
             return await _repo.UpdateProduct(productToUpdate);
         }

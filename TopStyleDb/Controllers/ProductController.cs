@@ -70,9 +70,9 @@ namespace TopStyleDb.Controllers
             bool updatedProduct = await _service.UpdateProduct(product);
             if (!updatedProduct)
             {
-                return BadRequest("Unable to update product.");
+                return BadRequest(new { Message = "Unable to update product." });
             }
-            return Ok($"{product.ProductName}, has been updated.");
+            return Ok(new {Message = $"{product.ProductName}, has been updated."});
         }
 
         [HttpDelete]

@@ -31,11 +31,6 @@ namespace TopStyleDb.Data.Repos
             return await _context.Products.ToListAsync();
         }
 
-        public Task<List<Product>> GetProductByCategory(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Product> GetProductById(int id)
         {
             return await _context.Products.FindAsync(id);
@@ -43,18 +38,18 @@ namespace TopStyleDb.Data.Repos
 
         public async Task<List<Product>> GetProductByName(string name)
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Where(p => p.ProductName.ToLower().Contains(name.ToLower())).ToListAsync();
         }
 
         public async Task<bool> UpdateProduct(Product product)
         {
-            var existingUser = await _context.Products.FindAsync();
-            if (existingUser == null)
+            var existingProduct = await _context.Products.FindAsync(product.ProductId);
+            if (existingProduct == null)
             {
                 return false;
             }
 
-            _context.Entry(existingUser).CurrentValues.SetValues(product);
+            _context.Entry(existingProduct).CurrentValues.SetValues(product);
             await _context.SaveChangesAsync();
             return true;
 
