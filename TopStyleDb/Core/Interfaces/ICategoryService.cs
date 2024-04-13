@@ -8,7 +8,7 @@ namespace TopStyleDb.Core.Interfaces
         public Task<CreateCategoryDTO> CreateCategory(CreateCategoryDTO categoryDto);
         public Task DeleteCategory(int categoryId);
         public Task<List<CategoryDTO>> GetAllCategories();
-        public Task<Category> GetCategoryContent(int categoryId);
+        public Task<CategoryContentDTO> GetCategoryContent(int categoryId);
         public Task<Category> GetCategoryById(int categoryId);
     }
 }

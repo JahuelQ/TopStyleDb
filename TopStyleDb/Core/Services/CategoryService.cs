@@ -72,18 +72,25 @@ namespace TopStyleDb.Core.Services
             };
         }
 
-        public async Task<Category> GetCategoryContent(int categoryId)
+        public async Task<CategoryContentDTO> GetCategoryContent(int categoryId)
         {
             var category = await _repo.GetCategory(categoryId);
             if (category == null)
             {
                 return null;
             }
-            return new Category
+
+            return new CategoryContentDTO
             {
-                CategoryId = category.CategoryId,
                 CategoryName = category.CategoryName,
-                Products = category.Products.ToList()
+                Products = category.Products.Select(p => new ProductDTO
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Description = p.Description,
+                    Price = p.Price,
+                    CategoryId = p.CategoryId
+                }).ToList()
             };
         }
     }

@@ -19,4 +19,10 @@
         public string CategoryName { get; set; }
         public int? ParentCategoryId { get; set; }
     }
+
+    public class CategoryContentDTO
+    {
+        public string CategoryName { get; set; }
+        public List<ProductDTO> Products { get; set; }
+    }
 }

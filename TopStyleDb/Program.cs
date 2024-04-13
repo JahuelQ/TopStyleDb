@@ -17,6 +17,10 @@ namespace TopStyleDb
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            ///////////
+            /// JWT ///
+            ///////////
             builder.Services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -37,8 +41,11 @@ namespace TopStyleDb
                     };
                 });
 
-            builder.Services.AddControllers();
 
+            ///////////////
+            /// SWAGGER ///
+            ///////////////
+            builder.Services.AddControllers();
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "TopStyle API", Version = "v1" });
@@ -71,6 +78,10 @@ namespace TopStyleDb
                 });
             });
 
+
+            ////////////////
+            /// Conn. Db ///
+            ////////////////
             //builder.Services.AddDbContext<TopStyleDbContext>(options =>
             //    options.UseSqlServer(Environment.GetEnvironmentVariable("TOPSTYLEDB_CONNECTION_STRING")));
 
@@ -84,7 +95,8 @@ namespace TopStyleDb
             builder.Services.AddTransient<ICustomerRepo, CustomerRepo>();
             builder.Services.AddTransient<ICategoryService, CategoryService>();
             builder.Services.AddTransient<ICategoryRepo, CategoryRepo>();
-
+            builder.Services.AddTransient<IProductService, ProductService>();
+            builder.Services.AddTransient<IProductRepo, ProductRepo>();
 
 
             var app = builder.Build();

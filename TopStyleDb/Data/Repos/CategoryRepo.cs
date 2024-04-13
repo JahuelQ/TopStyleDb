@@ -38,7 +38,9 @@ namespace TopStyleDb.Data.Repos
 
         public async Task<Category> GetCategory(int categoryId)
         {
-            return await _context.Categories.FindAsync(categoryId);
+            return await _context.Categories
+                .Include(c => c.Products)
+                .FirstOrDefaultAsync(c => c.CategoryId == categoryId);
         }
     }
 }
