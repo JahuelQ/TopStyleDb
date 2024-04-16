@@ -22,12 +22,18 @@ namespace TopStyleDb.Data.Repos
 
         public async Task<List<Order>> GetCurrentUserOrders(int userId)
         {
-            return await _context.Orders.Where(o => o.CustomerId == userId).ToListAsync();
+            return await _context.Orders
+                         .Where(o => o.CustomerId == userId)
+                         .Include(o => o.OrderDetails)
+                         .ToListAsync();
         }
 
         public async Task<Order> GetOrderById(int id, int userId)
         {
-            return await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == id && o.CustomerId == userId);
+            return await _context.Orders
+                         .Where(o => o.OrderId == id && o.CustomerId == userId)
+                         .Include(o => o.OrderDetails)
+                         .FirstOrDefaultAsync();
         }
     }
 }
