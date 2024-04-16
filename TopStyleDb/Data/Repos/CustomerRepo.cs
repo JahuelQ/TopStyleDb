@@ -12,7 +12,7 @@ namespace TopStyleDb.Data.Repos
             _context = context;
         }
 
-        public async Task<Customer> NewCustomer(Customer customer)
+        public async Task<Customer> CreateCustomer(Customer customer)
         {
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();

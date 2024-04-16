@@ -16,8 +16,8 @@ namespace TopStyleDb.Controllers
         }
 
         [HttpPost]
-        [Route("new")]
-        public async Task<IActionResult> NewProduct(ProductDTO productDto)
+        [Route("create")]
+        public async Task<IActionResult> CreateProduct(ProductDTO productDto)
         {
             var newProduct = await _service.CreateProduct(productDto);
             if (newProduct == null)
@@ -40,7 +40,7 @@ namespace TopStyleDb.Controllers
         }
 
         [HttpGet]
-        [Route("get/all")]
+        [Route("get")]
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _service.GetAllProducts();

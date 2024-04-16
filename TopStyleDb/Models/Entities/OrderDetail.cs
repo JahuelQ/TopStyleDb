@@ -21,6 +21,7 @@ namespace TopStyleDb.Models.Entities
         public virtual Product Product { get; set; }
 
         [Required]
+        [Range(1, int.MinValue, ErrorMessage = "Quantity must be at least 1 or more.")]
         public int Quantity { get; set; }
 
         [Required]

@@ -15,8 +15,8 @@ namespace TopStyleDb.Controllers
         }
 
         [HttpPost]
-        [Route("new")]
-        public async Task<IActionResult> NewCategory(CreateCategoryDTO categoryDto)
+        [Route("create")]
+        public async Task<IActionResult> CreateCategory(CreateCategoryDTO categoryDto)
         {
             var newCategory = await _service.CreateCategory(categoryDto);
             if (newCategory == null)
@@ -35,7 +35,7 @@ namespace TopStyleDb.Controllers
         }
 
         [HttpGet]
-        [Route("get/all")]
+        [Route("get")]
         public async Task<IActionResult> GetAllCategories()
         {
             var categoriesDto = await _service.GetAllCategories();

@@ -97,6 +97,8 @@ namespace TopStyleDb
             builder.Services.AddTransient<ICategoryRepo, CategoryRepo>();
             builder.Services.AddTransient<IProductService, ProductService>();
             builder.Services.AddTransient<IProductRepo, ProductRepo>();
+            builder.Services.AddTransient<IOrderRepo, OrderRepo>();
+            builder.Services.AddTransient<IOrderService, OrderService>();
 
 
             var app = builder.Build();

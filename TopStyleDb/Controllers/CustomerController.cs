@@ -35,10 +35,10 @@ namespace TopStyleDb.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("new")]
-        public async Task<IActionResult> NewCustomer(Customer customer)
+        [Route("create")]
+        public async Task<IActionResult> CreateCustomer(Customer customer)
         {
-            var newCustomer = await _service.NewCustomer(customer);
+            var newCustomer = await _service.CreateCustomer(customer);
             if (newCustomer == null)
             {
                 return BadRequest("Unable to create customer.");
@@ -59,7 +59,7 @@ namespace TopStyleDb.Controllers
         }
 
         [HttpGet]
-        [Route("get/all")]
+        [Route("get")]
         public async Task<IActionResult> GetAllCustomers()
         {
             var customers = await _service.GetAllCustomers();
