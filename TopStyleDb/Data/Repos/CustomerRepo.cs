@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TopStyleDb.Data.Interfaces;
+using TopStyleDb.Models.DTO;
 using TopStyleDb.Models.Entities;
 
 namespace TopStyleDb.Data.Repos

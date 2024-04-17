@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "identityapp1": {
+      "ignored": "true",
+      "type": "identityapp"
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/swedencentral/connectors/ConnectionStringsTOPSTYLEDB_CONNECTION_S_2FB8527A55",
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/topstyle-jahuel/databases/topstyle-jahuel",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:TOPSTYLEDB_CONNECTION_STRING",
+      "dynamicId": null
+    }
+  }
+}

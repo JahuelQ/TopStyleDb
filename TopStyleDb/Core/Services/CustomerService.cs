@@ -15,8 +15,16 @@ namespace TopStyleDb.Core.Services
             _authService = authService;
         }
 
-        public async Task<CustomerDTO> CreateCustomer(Customer customer)
+        public async Task<CustomerDTO> CreateCustomer(CreateCustomerDTO createCustomerDTO)
         {
+            var customer = new Customer
+            {
+                FirstName = createCustomerDTO.FirstName,
+                LastName = createCustomerDTO.LastName,
+                Email = createCustomerDTO.Email,
+                Password = createCustomerDTO.Password
+            };
+
             var createdCustomer = await _repo.CreateCustomer(customer);
             if (createdCustomer == null)
             {

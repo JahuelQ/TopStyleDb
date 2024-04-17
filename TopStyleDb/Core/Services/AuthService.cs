@@ -20,10 +20,10 @@ namespace TopStyleDb.Core.Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var claims = new[]
+            var claims = new List<Claim>
             {
             new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()),
-            new Claim(ClaimTypes.Email, customer.Email)
+            new Claim(ClaimTypes.Email, customer.Email),
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor

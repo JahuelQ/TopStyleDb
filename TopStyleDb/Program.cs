@@ -82,12 +82,9 @@ namespace TopStyleDb
             ////////////////
             /// Conn. Db ///
             ////////////////
-            //builder.Services.AddDbContext<TopStyleDbContext>(options =>
-            //    options.UseSqlServer(Environment.GetEnvironmentVariable("TOPSTYLEDB_CONNECTION_STRING")));
-
             builder.Services.AddDbContext<TopStyleDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("TopStyleDb"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("TOPSTYLEDB_CONNECTION_STRING"));
             });
 
             builder.Services.AddTransient<IAuthService, AuthService>();
@@ -109,8 +106,6 @@ namespace TopStyleDb
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-            //app.MapControllers();
 
             app.UseSwagger();
             app.UseSwaggerUI();

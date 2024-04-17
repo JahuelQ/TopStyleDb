@@ -36,9 +36,9 @@ namespace TopStyleDb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("create")]
-        public async Task<IActionResult> CreateCustomer(Customer customer)
+        public async Task<IActionResult> CreateCustomer(CreateCustomerDTO customerDTO)
         {
-            var newCustomer = await _service.CreateCustomer(customer);
+            var newCustomer = await _service.CreateCustomer(customerDTO);
             if (newCustomer == null)
             {
                 return BadRequest("Unable to create customer.");
